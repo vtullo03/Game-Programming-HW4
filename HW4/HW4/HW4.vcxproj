@@ -133,11 +133,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="ShaderProgram.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Bonnie_Placeholder.png" />
+    <Image Include="Chica_Placeholder.png" />
+    <Image Include="Foxy_Placeholder.png" />
+    <Image Include="Freddy_Placeholder.png" />
+    <Image Include="Guard_Placeholder.png" />
+    <Image Include="KitchenTile_Placeholder.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

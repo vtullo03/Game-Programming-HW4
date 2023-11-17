@@ -21,10 +21,42 @@
     <ClCompile Include="ShaderProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ShaderProgram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Bonnie_Placeholder.png">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="Chica_Placeholder.png">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="Foxy_Placeholder.png">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="Freddy_Placeholder.png">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="Guard_Placeholder.png">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="KitchenTile_Placeholder.png">
+      <Filter>Source Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
