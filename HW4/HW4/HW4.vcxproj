@@ -79,7 +79,7 @@
       <AdditionalIncludeDirectories>C:\SDL\glew\include;C:\SDL\SDL2\include;C:\SDL\SDL2_image\include;C:\SDL\SDL2_mixer\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\SDL\glew\lib\Release\Win32;C:\SDL\SDL2\lib\x86;C:\SDL\SDL2_image\lib\x86;C:\SDL\SDL2_mixer\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -146,10 +146,11 @@
   <ItemGroup>
     <Image Include="Bonnie_Placeholder.png" />
     <Image Include="Chica_Placeholder.png" />
+    <Image Include="font.png" />
     <Image Include="Foxy_Placeholder.png" />
     <Image Include="Freddy_Placeholder.png" />
     <Image Include="Guard_Placeholder.png" />
-    <Image Include="KitchenTile_Placeholder.png" />
+    <Image Include="Tileset_Placeholder.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

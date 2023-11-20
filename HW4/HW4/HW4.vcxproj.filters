@@ -55,7 +55,10 @@
     <Image Include="Guard_Placeholder.png">
       <Filter>Source Files</Filter>
     </Image>
-    <Image Include="KitchenTile_Placeholder.png">
+    <Image Include="Tileset_Placeholder.png">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="font.png">
       <Filter>Source Files</Filter>
     </Image>
   </ItemGroup>
