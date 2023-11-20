@@ -74,8 +74,8 @@ public:
     void deactivate() { m_is_active = false; };
 
     // movement
-    void move_left();
-    void move_right();
+    void move_left() { m_movement.x = -1.0f; }
+    void move_right() { m_movement.x = 1.0f; }
 
     // GETTERS
     EntityType const get_entity_type()    const { return m_entity_type; };

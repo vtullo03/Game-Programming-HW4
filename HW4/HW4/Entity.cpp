@@ -264,6 +264,7 @@ void const Entity::check_collision_x(Map* map)
 
 /*
 * Render function specifically for the ENTITY class
+* 
 * @param program, reference to the SHADERPROGRAM class -- to use it's functions
 */
 void Entity::render(ShaderProgram* program)
@@ -291,6 +292,7 @@ void Entity::render(ShaderProgram* program)
 
 /*
 * General check collision function for static object
+* 
 * @param other, the other ENTITY class that is being collided with
 * 
 * TREAT LIKE NORMAL PHYSICS COLLISION -- STOPS OBJECTS
@@ -309,6 +311,14 @@ bool const Entity::check_collision(Entity* other) const
 
 // AI SCRIPTS HERE
 
+/*
+* Activates each enemies' AI
+* 
+* @param player, the ENTITY object that represents the player
+* so that enemies can affect the player (follow, kill,etc.)
+* @param delta_time, the real life time in seconds
+* for enemies that incorporate cooldowns
+*/
 void Entity::ai_activate(Entity* player, float delta_time)
 {
     switch (m_ai_type)
@@ -334,6 +344,15 @@ void Entity::ai_activate(Entity* player, float delta_time)
     }
 }
 
+/*
+* Used by the BONNIE enemy
+* Immiedately goes into the patroling state and starts a countdown
+* When the countdown ends switch directions and reset countdown
+* When the player gets into line of sight, enter the chasing state
+* 
+* @param player, the player ENTITY object
+* @param delta_time, real life time in seconds
+*/
 void Entity::ai_patrol(Entity* player, float delta_time)
 {
     switch (m_ai_state)
@@ -382,6 +401,14 @@ void Entity::ai_patrol(Entity* player, float delta_time)
     }
 }
 
+/*
+* Used by the CHICA enemy
+* Idle until the player is within range
+* Even when the player is within range - stay idle if the player is sneaking
+* Otherwise enter the chasing state
+* 
+* @param player, the player ENTITY object
+*/
 void Entity::ai_stealth_activate(Entity* player)
 {
     switch (m_ai_state)
@@ -408,6 +435,13 @@ void Entity::ai_stealth_activate(Entity* player)
     }    
 }
 
+/*
+* Used by the FOXY enemy
+* If the player is moving in Foxy's direction then stay idle
+* When the player is moving away from Foxy, than Foxy states moving
+* in the player's direction
+* Inspired by the Boos from Mario
+*/
 void Entity::ai_peekaboo(Entity* player)
 {
     switch (m_ai_state)
@@ -426,6 +460,14 @@ void Entity::ai_peekaboo(Entity* player)
     }
 }
 
+/*
+* Used by the Freddy enemy
+* Immediately go into the patroling state
+* When patroling, start a countdown
+* When the countdown is over teleport randomly to one of the set locations
+* Restart countdown
+* Inspired by Freddy's movement in the original FNAF
+*/
 void Entity::ai_teleport(Entity* player, float delta_time)
 {
     std::vector<glm::vec3> positions =
@@ -448,18 +490,4 @@ void Entity::ai_teleport(Entity* player, float delta_time)
     default:
         break;
     }
-}
-
-void Entity::move_left()
-{
-    m_movement.x = -1.0f;
-    if (is_facing_right)
-    {
-        m_model_matrix = glm::scale(m_model_matrix, glm::vec3(-1.0f, 0.0f, 0.0f));
-    }
-}
-
-void Entity::move_right()
-{
-    m_movement.x = 1.0f;
 }

@@ -137,6 +137,7 @@ int main(int argc, char* argv[])
 
 /*
 * Loads a texture to be used for each sprite
+* 
 * @param filepath, an array of chars that represents the text name
   of the filepath of the texture for the sprite
 */
@@ -172,6 +173,14 @@ GLuint load_texture(const char* filepath)
 	return textureID;
 }
 
+/*
+* Initialises an ENEMY ENTITY object
+* 
+* @param enemy, the ENEMY ENTITY object
+* @param AITYPE, what animatronic they are
+* @param texture_name[], the name of the sprite they have
+* @param position, the position the enemy is going to spawn at
+*/
 void init_enemy(Entity& enemy, AIType animatronic, 
 	const char texture_name[], glm::vec3 position)
 {
@@ -185,6 +194,9 @@ void init_enemy(Entity& enemy, AIType animatronic,
 	enemy.set_ai_state(IDLE);
 }
 
+/*
+* Initialises all objects in the game -- only runs the first frame
+*/
 void initialise()
 {
 	// create window
@@ -284,30 +296,34 @@ void process_input()
 
 	if (key_state[SDL_SCANCODE_A])
 	{
+		// If holding either shift enter into sprint mode
 		if (key_state[SDL_SCANCODE_LSHIFT] || key_state[SDL_SCANCODE_RSHIFT])
 		{
 			g_state.player->set_movement_state(SPRINT);
 		}
+		// If holding either control enter into sprint mode
 		if (key_state[SDL_SCANCODE_LCTRL] || key_state[SDL_SCANCODE_RCTRL])
 		{
 			g_state.player->set_movement_state(SNEAK);
 		}
-		else g_state.player->set_movement_state(WALK);
+		else g_state.player->set_movement_state(WALK); // otherwise normal speed
 
 		g_state.player->move_left();
 		g_state.player->is_facing_right = false;
 	}
 	else if (key_state[SDL_SCANCODE_D])
 	{
+		// If holding either shift enter into sprint mode
 		if (key_state[SDL_SCANCODE_LSHIFT] || key_state[SDL_SCANCODE_RSHIFT])
 		{
 			g_state.player->set_movement_state(SPRINT);
 		}
+		// If holding either control enter into sprint mode
 		if (key_state[SDL_SCANCODE_LCTRL] || key_state[SDL_SCANCODE_RCTRL])
 		{
 			g_state.player->set_movement_state(SNEAK);
 		}
-		else g_state.player->set_movement_state(WALK);
+		else g_state.player->set_movement_state(WALK); // otherwise normal speed
 
 		g_state.player->is_facing_right = true;
 		g_state.player->move_right();
@@ -332,6 +348,9 @@ void process_input()
 	}
 }
 
+/*
+* Updates all objects in the game every second
+*/
 void update()
 {
 	float ticks = (float)SDL_GetTicks() / MILLISECONDS_IN_SECOND;
@@ -366,6 +385,10 @@ void update()
 	g_view_matrix = glm::translate(g_view_matrix, glm::vec3(-g_state.player->get_position().x, 0.75f, 0.0f));
 }
 
+/*
+* Renders all objects in the game, called every frame
+* Responsible for calling the entity's render function and drawing text
+*/
 void render()
 {
 	g_shader_program.set_view_matrix(g_view_matrix);
@@ -403,7 +426,9 @@ void render()
 	SDL_GL_SwapWindow(g_display_window);
 }
 
-// shutdown safely
+/*
+* Shuts down the game safely
+*/
 void shutdown()
 {
 	SDL_Quit();
@@ -414,6 +439,16 @@ void shutdown()
 	delete g_state.map;
 }
 
+/*
+* Draws all the game's text
+* 
+* @param program, a reference to the shader program that the game is using
+* @param font_texture_id, the image that contains our font
+* @param text, the text to be rendered
+* @param screen_size, size of the game's display
+* @param spacing, spacing between characters
+* @param position, position of the text
+*/
 void draw_text(ShaderProgram* program, GLuint font_texture_id, std::string text, float screen_size, float spacing, glm::vec3 position)
 {
 	// Scale the size of the fontbank in the UV-plane
